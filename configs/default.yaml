@@ -1,0 +1,13 @@
+# Is high yield just expensive equity? JNK vs an equity + Treasury replica, Dec 2007 - Sep 2026
+fund: JNK            # SPDR Bloomberg High Yield Bond ETF (longest-running HY ETF in the source file)
+equity: SPY
+treasury_maturity: 5 # constant-maturity Treasury proxy built from the daily par curve (bc_5year)
+start: "2007-12-05"
+end: "2026-09-30"    # last full month in the files
+window_months: 36    # rolling window for walk-forward betas
+rebalance_cost_bp: 5 # per unit of change in weights, applied to the replica
+stress_spy_month: -0.05
+sources:
+  stock_prices.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/stock_prices.parquet, sha256: 903dbb965979f8b92a60b01524372f42be0e4bf88c291caf87171a286149be32}
+  stock_dividend_events.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/stock_dividend_events.parquet, sha256: 08d2a37482501c79c108dd4fefe5f1cd8d64b19ef3d3a316753597c0ddd4ece8}
+  daily_treasury_yield.parquet: {url: https://huggingface.co/datasets/defeatbeta/yahoo-finance-data/resolve/main/data/US/daily_treasury_yield.parquet, sha256: 37fca5d22b8580efc93225213d0c4f6d7ef9cf5b183cf7a427cd22b274606171}
